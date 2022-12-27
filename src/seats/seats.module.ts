@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { SeatsService } from './seats.service';
 import { SeatsController } from './seats.controller';
 import { SeatsRepository } from './seats.repository';
-import { TypeOrmModule } from '@nestjs/typeorm/dist';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
@@ -11,4 +11,4 @@ import { TypeOrmModule } from '@nestjs/typeorm/dist';
   controllers: [SeatsController],
   providers: [SeatsService]
 })
-export class SeatsModule {}
+export class SeatsModule { }

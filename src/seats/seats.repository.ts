@@ -3,7 +3,7 @@ import { CreateSeatDto } from "./dto/create-seat.dto";
 import { UpdateSeatDto } from "./dto/update-seat.dto";
 import { Seat } from "./entities/seat.entity";
 
-@EntityRepository()
+@EntityRepository(Seat)
 export class SeatsRepository extends Repository<Seat> {
 
   createSeat(createSeatDto: CreateSeatDto) {

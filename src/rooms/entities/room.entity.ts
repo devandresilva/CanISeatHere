@@ -1,5 +1,17 @@
+import { Seat } from './../../seats/entities/seat.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Session } from 'src/sessions/entities/session.entity';
+
+@Entity()
 export class Room {
+  @PrimaryGeneratedColumn()
   id: number;
-  //melhor a sala ter um nome ou endereço?    name: string ou o atributo abaixo?;
-  address: number;
+  @Column()
+  name: string;
+
+  @OneToMany(type => Seat, seat => seat.room, { eager: true })
+  seats: Seat[];
+
+  @OneToMany(type => Session, session => session.room, { eager: true })
+  session: Session[];
 }

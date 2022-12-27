@@ -7,22 +7,28 @@ import { EntityRepository, Repository } from "typeorm";
 export class MoviesRepository extends Repository<Movie> {
 
   createMovie(createMovieDto: CreateMovieDto) {
-    return "por fazer";
+    const { name, synopsis, exhibitionDate } = createMovieDto;
+    const movie = this.create({
+      name: name,
+      synopsis: synopsis,
+      exhibitionDate: exhibitionDate
+    })
   }
 
   getAllMovies() {
-    return "por fazer";
+    return this.createQueryBuilder("movie").getMany()
   }
 
   getMovieById(id: number) {
-    return "por fazer";
+    return this.findOne(id);
   }
 
-  updateMovie(id: number, updateMovieDto: UpdateMovieDto) {
-    return "por fazer";
+  async updateMovie(id: number, updateMovieDto: UpdateMovieDto) {
+    const { name, synopsis, exhibitionDate } = updateMovieDto;
+    let movie = await this.getMovieById(id);
   }
 
   removeMovie(id: number) {
-    return "por fazer";
+    return this.delete(id);
   }
 }

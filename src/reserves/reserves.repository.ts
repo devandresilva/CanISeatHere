@@ -5,8 +5,8 @@ import { CreateReserveDto } from "./dto/create-reserve.dto";
 import { UpdateReserveDto } from "./dto/update-reserve.dto";
 
 @EntityRepository()
-export class ReservesReposiroty extends Repository<Reserve>{
-  
+export class ReservesRepository extends Repository<Reserve>{
+
   createReserve(createReserveDto: CreateReserveDto) {
     return "por fazer";
   }

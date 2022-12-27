@@ -1,3 +1,3 @@
 export class CreateSeatDto {
-  idRoom: number;
+  room: number;
 }
