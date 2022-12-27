@@ -1,5 +1,5 @@
 export class Room {
   id: number;
-  //name: string ou o atributo abaixo?;
+  //melhor a sala ter um nome ou endereço?    name: string ou o atributo abaixo?;
   address: number;
 }

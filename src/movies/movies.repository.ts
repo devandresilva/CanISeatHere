@@ -1,30 +1,28 @@
-import { Injectable } from "@nestjs/common";
 import { Movie } from "./entities/movie.entity";
 import { CreateMovieDto } from "./dto/create-movie.dto";
 import { UpdateMovieDto } from "./dto/update-movie.dto";
+import { EntityRepository, Repository } from "typeorm";
 
-@Injectable()
-export class MoviesRepository {
-  //Array para teste (dados não persistentes)
-  private movies: Movie[] = []
+@EntityRepository(Movie)
+export class MoviesRepository extends Repository<Movie> {
 
   createMovie(createMovieDto: CreateMovieDto) {
-    return `cria um filme com os dados do ${createMovieDto}`;
+    return "por fazer";
   }
 
   getAllMovies() {
-    return this.movies;
+    return "por fazer";
   }
 
   getMovieById(id: number) {
-    return `filme com esse id: ${id}`;
+    return "por fazer";
   }
 
   updateMovie(id: number, updateMovieDto: UpdateMovieDto) {
-    return `atualiza o filme com esse id: ${id} com dados do ${updateMovieDto}`;
+    return "por fazer";
   }
 
   removeMovie(id: number) {
-    return `remove o filme com esse id: ${id}`;
+    return "por fazer";
   }
 }

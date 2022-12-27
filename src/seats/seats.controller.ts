@@ -8,27 +8,28 @@ export class SeatsController {
   constructor(private readonly seatsService: SeatsService) {}
 
   @Post()
-  create(@Body() createSeatDto: CreateSeatDto) {
-    return this.seatsService.create(createSeatDto);
+  createSeat(@Body() createSeatDto: CreateSeatDto) {
+    return this.seatsService.createSeat(createSeatDto);
   }
 
   @Get()
-  findAll() {
-    return this.seatsService.findAll();
+  getAllSeats() {
+    return this.seatsService.getAllSeats();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.seatsService.findOne(+id);
+  getSeatById(@Param('id') id: number) {
+    return this.seatsService.getSeatById(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateSeatDto: UpdateSeatDto) {
-    return this.seatsService.update(+id, updateSeatDto);
+  updateSeat(@Param('id') id: number, @Body() updateSeatDto: UpdateSeatDto) {
+    return this.seatsService.updateSeat(id, updateSeatDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.seatsService.remove(+id);
+  removeSeat(@Param('id') id: number) {
+    return this.seatsService.removeSeat(id);
   }
+
 }

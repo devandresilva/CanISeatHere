@@ -1,26 +1,29 @@
 import { Injectable } from '@nestjs/common';
 import { CreateSeatDto } from './dto/create-seat.dto';
 import { UpdateSeatDto } from './dto/update-seat.dto';
+import { SeatsRepository } from './seats.repository';
 
 @Injectable()
 export class SeatsService {
-  create(createSeatDto: CreateSeatDto) {
-    return 'This action adds a new seat';
+  constructor(private readonly seatsRepository : SeatsRepository){}
+
+  createSeat(createSeatDto: CreateSeatDto) {
+    return this.seatsRepository.createSeat(createSeatDto);
   }
 
-  findAll() {
-    return `This action returns all seats`;
+  getAllSeats() {
+    return this.seatsRepository.getAllSeats();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} seat`;
+  getSeatById(id: number) {
+    return this.seatsRepository.getSeatById(id);
   }
 
-  update(id: number, updateSeatDto: UpdateSeatDto) {
-    return `This action updates a #${id} seat`;
+  updateSeat(id: number, updateSeatDto: UpdateSeatDto) {
+    return this.seatsRepository.updateSeat(id, updateSeatDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} seat`;
+  removeSeat(id: number) {
+    return this.seatsRepository.removeSeat(id);
   }
 }

@@ -1,30 +1,28 @@
-import { Injectable } from "@nestjs/common";
 import { Room } from "./entities/room.entity";
 import { CreateRoomDto } from "./dto/create-room.dto";
 import { UpdateRoomDto } from "./dto/update-room.dto";
+import { EntityRepository, Repository } from "typeorm";
 
-@Injectable()
-export class RoomsRepository {
-   //Array para teste (dados não persistentes)
-  private rooms: Room[] = []
+@EntityRepository()
+export class RoomsRepository extends Repository<Room>{
 
   createRoom(createRoomDto: CreateRoomDto) {
-    return `cria uma sala com os dados do ${createRoomDto}`;
+    return "por fazer";
   }
 
   getAllRooms() {
-    return this.rooms;
+    return "por fazer";
   }
 
   getRoomById(id: number) {
-    return `sala com esse id: ${id}`;
+    return "por fazer";
   }
 
   updateRoom(id: number, updateRoomDto: UpdateRoomDto) {
-    return `atualiza a sala com esse id: ${id} com dados do ${updateRoomDto}`;
+    return "por fazer";
   }
 
   removeRoom(id: number) {
-    return `remove a sala com esse id: ${id}`;
+    return "por fazer";
   }
 }
