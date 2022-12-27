@@ -17,14 +17,14 @@ export class MoviesRepository {
   }
 
   getMovieById(id: number) {
-    return `filme com esse ${id}`;
+    return `filme com esse id: ${id}`;
   }
 
   updateMovie(id: number, updateMovieDto: UpdateMovieDto) {
-    return `atualiza o filme com esse ${id} com dados do ${updateMovieDto}`;
+    return `atualiza o filme com esse id: ${id} com dados do ${updateMovieDto}`;
   }
 
   removeMovie(id: number) {
-    return `remove o filme com esse ${id}`;
+    return `remove o filme com esse id: ${id}`;
   }
 }

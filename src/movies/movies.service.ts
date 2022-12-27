@@ -5,7 +5,7 @@ import { MoviesRepository } from './movies.repository';
 
 @Injectable()
 export class MoviesService {
-  constructor(private moviesRepository: MoviesRepository){}
+  constructor(private readonly moviesRepository: MoviesRepository){}
 
   createMovie(createMovieDto: CreateMovieDto) {
     return this.moviesRepository.createMovie(createMovieDto);

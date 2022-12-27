@@ -8,27 +8,27 @@ export class RoomsController {
   constructor(private readonly roomsService: RoomsService) {}
 
   @Post()
-  create(@Body() createRoomDto: CreateRoomDto) {
-    return this.roomsService.create(createRoomDto);
+  createRoom(@Body() createRoomDto: CreateRoomDto) {
+    return this.roomsService.createRoom(createRoomDto);
   }
 
   @Get()
-  findAll() {
-    return this.roomsService.findAll();
+  getAllRooms() {
+    return this.roomsService.getAllRooms();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.roomsService.findOne(+id);
+  getRoomById(@Param('id') id: number) {
+    return this.roomsService.getRoomById(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateRoomDto: UpdateRoomDto) {
-    return this.roomsService.update(+id, updateRoomDto);
+  updateRoom(@Param('id') id: number, @Body() updateRoomDto: UpdateRoomDto) {
+    return this.roomsService.updateRoom(id, updateRoomDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.roomsService.remove(+id);
+  removeRoom(@Param('id') id: number) {
+    return this.roomsService.removeRoom(id);
   }
 }
