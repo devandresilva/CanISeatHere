@@ -19,7 +19,7 @@ export class MoviesRepository extends Repository<Movie> {
     return this.createQueryBuilder("movie").getMany()
   }
 
-  getMovieById(id: number) {
+  getMovieById(id) {
     return this.findOne(id);
   }
 
