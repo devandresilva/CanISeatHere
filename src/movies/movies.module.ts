@@ -5,10 +5,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { MoviesRepository } from './movies.repository';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([MoviesRepository])
-  ],
+  imports: [TypeOrmModule.forFeature([MoviesRepository])],
   controllers: [MoviesController],
-  providers: [MoviesService]
+  providers: [MoviesService],
+  exports: [MoviesService],
 })
-export class MoviesModule { }
+export class MoviesModule {}

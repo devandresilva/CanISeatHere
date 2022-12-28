@@ -9,9 +9,9 @@ export class Room {
   @Column()
   name: string;
 
-  @OneToMany(type => Seat, seat => seat.room, { eager: true })
+  @OneToMany((type) => Seat, (seat) => seat.room, { eager: true })
   seats: Seat[];
 
-  @OneToMany(type => Session, session => session.room, { eager: true })
+  @OneToMany((type) => Session, (session) => session.room)
   session: Session[];
 }

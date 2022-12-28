@@ -5,10 +5,9 @@ import { RoomsRepository } from './rooms.repository';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([RoomsRepository])
-  ],
+  imports: [TypeOrmModule.forFeature([RoomsRepository])],
   controllers: [RoomsController],
-  providers: [RoomsService]
+  providers: [RoomsService],
+  exports: [RoomsService],
 })
-export class RoomsModule { }
+export class RoomsModule {}

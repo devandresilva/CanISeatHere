@@ -1,6 +1,6 @@
 export class CreateSessionDto {
-  idMovie: number;
-  idRoom: number;
+  movieId: number;
+  roomId: number;
   date: Date;
   start: Date;
   end: Date;
