@@ -11,6 +11,7 @@ import { Session } from './sessions/entities/session.entity';
 import { Reserve } from './reserves/entities/reserve.entity';
 import { Seat } from './seats/entities/seat.entity';
 import { AuthModule } from './auth/auth.module';
+import { DataSource } from 'typeorm';
 
 @Module({
   imports: [
@@ -34,4 +35,6 @@ import { AuthModule } from './auth/auth.module';
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private dataSource: DataSource) {}
+}

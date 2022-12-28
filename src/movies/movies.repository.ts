@@ -2,8 +2,9 @@ import { Movie } from './entities/movie.entity';
 import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
 import { EntityRepository, Repository } from 'typeorm';
+import { Injectable } from '@nestjs/common/decorators';
 
-@EntityRepository(Movie)
+@Injectable()
 export class MoviesRepository extends Repository<Movie> {
   createMovie(createMovieDto: CreateMovieDto) {
     const { name, synopsis, exhibitionDate } = createMovieDto;
