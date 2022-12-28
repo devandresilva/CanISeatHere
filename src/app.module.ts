@@ -10,7 +10,7 @@ import { Movie } from './movies/entities/movie.entity';
 import { Session } from './sessions/entities/session.entity';
 import { Reserve } from './reserves/entities/reserve.entity';
 import { Seat } from './seats/entities/seat.entity';
-
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -28,9 +28,10 @@ import { Seat } from './seats/entities/seat.entity';
     MoviesModule,
     RoomsModule,
     SessionsModule,
-    ReservesModule
+    ReservesModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],
 })
-export class AppModule { }
+export class AppModule {}

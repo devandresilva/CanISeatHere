@@ -1,4 +1,4 @@
 export class CreateReserveDto {
-  idSession: number;
-  idSeat: number;
+  sessionId: number;
+  seatId: number;
 }

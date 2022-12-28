@@ -14,5 +14,6 @@ import { RoomsService } from 'src/rooms/rooms.service';
   ],
   controllers: [SessionsController],
   providers: [SessionsService],
+  exports: [SessionsService],
 })
 export class SessionsModule {}

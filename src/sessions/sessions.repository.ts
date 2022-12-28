@@ -1,28 +1,35 @@
-import { EntityRepository, Repository } from "typeorm";
-import { Session } from "./entities/session.entity";
-import { CreateSessionDto } from "./dto/create-session.dto";
-import { UpdateSessionDto } from "./dto/update-session.dto";
+import { EntityRepository, Repository } from 'typeorm';
+import { Session } from './entities/session.entity';
+import { CreateSessionDto } from './dto/create-session.dto';
+import { UpdateSessionDto } from './dto/update-session.dto';
 
 @EntityRepository()
-export class SessionReposiroty extends Repository<Session>{
-  
-  createSession(createSessionDto: CreateSessionDto) {
-    return 'Por fazer';
+export class SessionReposiroty extends Repository<Session> {
+  createSession(date, start, end, movie, room) {
+    const session = this.create({ date, start, end, movie, room });
+    return this.save(session);
+  }
+
+  async getSeatsDisponibles(sessionId) {
+    const session = await this.getSessionById(sessionId);
+    const room = session.room;
+    const seats = await room.seats;
+    // const seatsDisponibles = seats.filter();
   }
 
   getAllSessions() {
-    return 'Por fazer';
+    return this.createQueryBuilder('session').getMany();
   }
 
-  getSessionById(id: number) {
-    return 'Por fazer';
+  getSessionById(id) {
+    return this.findOne(id);
   }
 
   updateSession(id: number, updateSessionDto: UpdateSessionDto) {
-    return 'Por fazer';
+    return '';
   }
 
-  removeSession(id: number) {
-    return 'Por fazer';
+  removeSession(id) {
+    this.delete(id);
   }
 }
