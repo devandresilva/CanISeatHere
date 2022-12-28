@@ -10,13 +10,6 @@ export class SessionReposiroty extends Repository<Session> {
     return this.save(session);
   }
 
-  async getSeatsDisponibles(sessionId) {
-    const session = await this.getSessionById(sessionId);
-    const room = session.room;
-    const seats = await room.seats;
-    // const seatsDisponibles = seats.filter();
-  }
-
   getAllSessions() {
     return this.createQueryBuilder('session').getMany();
   }

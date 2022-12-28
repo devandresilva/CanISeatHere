@@ -5,7 +5,7 @@ import { RoomsRepository } from './rooms.repository';
 
 @Injectable()
 export class RoomsService {
-  constructor(private readonly roomRepository : RoomsRepository){}
+  constructor(private readonly roomRepository: RoomsRepository) {}
 
   createRoom(createRoomDto: CreateRoomDto) {
     return this.roomRepository.createRoom(createRoomDto);
@@ -15,15 +15,11 @@ export class RoomsService {
     return this.roomRepository.getAllRooms();
   }
 
-  getRoomById(id: number) {
+  getRoomById(id) {
     return this.roomRepository.getRoomById(id);
   }
 
-  updateRoom(id: number, updateRoomDto: UpdateRoomDto) {
-    return this.roomRepository.updateRoom(id, updateRoomDto);
-  }
-
-  removeRoom(id: number) {
+  removeRoom(id) {
     return this.roomRepository.removeRoom(id);
   }
 }

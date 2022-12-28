@@ -4,6 +4,7 @@ import { UpdateSessionDto } from './dto/update-session.dto';
 import { SessionReposiroty } from './sessions.repository';
 import { MoviesService } from 'src/movies/movies.service';
 import { RoomsService } from 'src/rooms/rooms.service';
+import { ReservesService } from 'src/reserves/reserves.service';
 
 @Injectable()
 export class SessionsService {
@@ -11,6 +12,7 @@ export class SessionsService {
     private readonly sessionsRepository: SessionReposiroty,
     private movieService: MoviesService,
     private roomService: RoomsService,
+    private reserveService: ReservesService,
   ) {}
 
   createSession(createSessionDto: CreateSessionDto) {
@@ -18,6 +20,16 @@ export class SessionsService {
     const room = this.roomService.getRoomById(createSessionDto.roomId);
     const { date, start, end } = createSessionDto;
     return this.sessionsRepository.createSession(date, start, end, movie, room);
+  }
+
+  async getAllSeatsDispobibleBySessionId(id) {
+    const session = await this.getSessionById(id);
+    const room = await this.roomService.getRoomById(session.room.id);
+    const reserves = await this.reserveService.getAllReserves();
+    // pegar seates que não estão presentes em reservas
+    const disponiblesSeats = room.seats.filter((seat) => {
+      return !reserves.some((reserve) => reserve.seat.id === seat.id);
+    });
   }
 
   getAllSessions() {

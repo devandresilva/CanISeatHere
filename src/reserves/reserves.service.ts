@@ -34,10 +34,6 @@ export class ReservesService {
     return this.reservesRepository.getReserveById(id);
   }
 
-  updateReserve(id: number, updateReserveDto: UpdateReserveDto) {
-    return this.reservesRepository.updateReserve(id, updateReserveDto);
-  }
-
   removeReserve(id: number) {
     return this.reservesRepository.removeReserve(id);
   }

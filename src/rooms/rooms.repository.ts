@@ -1,28 +1,27 @@
-import { Room } from "./entities/room.entity";
-import { CreateRoomDto } from "./dto/create-room.dto";
-import { UpdateRoomDto } from "./dto/update-room.dto";
-import { EntityRepository, Repository } from "typeorm";
+import { Room } from './entities/room.entity';
+import { CreateRoomDto } from './dto/create-room.dto';
+import { UpdateRoomDto } from './dto/update-room.dto';
+import { EntityRepository, Repository } from 'typeorm';
 
 @EntityRepository()
-export class RoomsRepository extends Repository<Room>{
-
+export class RoomsRepository extends Repository<Room> {
   createRoom(createRoomDto: CreateRoomDto) {
-    return "por fazer";
+    const { name } = createRoomDto;
+    const room = this.create({
+      name: name,
+    });
+    return this.save(room);
   }
 
   getAllRooms() {
-    return "por fazer";
+    return this.createQueryBuilder('room').getMany();
   }
 
-  getRoomById(id: number) {
-    return "por fazer";
+  getRoomById(id) {
+    return this.findOne(id);
   }
 
-  updateRoom(id: number, updateRoomDto: UpdateRoomDto) {
-    return "por fazer";
-  }
-
-  removeRoom(id: number) {
-    return "por fazer";
+  removeRoom(id) {
+    return this.delete(id);
   }
 }

@@ -14,5 +14,6 @@ import { SeatsService } from 'src/seats/seats.service';
   ],
   controllers: [ReservesController],
   providers: [ReservesService],
+  exports: [ReservesService],
 })
 export class ReservesModule {}
