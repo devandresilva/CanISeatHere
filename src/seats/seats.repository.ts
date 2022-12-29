@@ -18,7 +18,7 @@ export class SeatsRepository {
   }
 
   getSeatById(id) {
-    return this.dataSource.getRepository(Seat).findOne(id);
+    return this.dataSource.getRepository(Seat).findOne({ where: { id: id } });
   }
 
   removeSeat(id) {

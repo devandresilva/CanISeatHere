@@ -1,21 +1,23 @@
-import { EntityRepository, Repository } from 'typeorm';
+import { EntityRepository, Repository, DataSource } from 'typeorm';
 import { Session } from './entities/session.entity';
 import { CreateSessionDto } from './dto/create-session.dto';
 import { UpdateSessionDto } from './dto/update-session.dto';
+import { Injectable } from '@nestjs/common';
 
-@EntityRepository()
-export class SessionRepository extends Repository<Session> {
+@Injectable()
+export class SessionRepository {
+  constructor(private dataSource: DataSource) { }
   createSession(date, start, end, movie, room) {
-    const session = this.create({ date, start, end, movie, room });
-    return this.save(session);
+    const session = this.dataSource.getRepository(Session).create({ date, start, end, movie, room });
+    return this.dataSource.getRepository(Session).save(session);
   }
 
   getAllSessions() {
-    return this.createQueryBuilder('session').getMany();
+    return this.dataSource.getRepository(Session).createQueryBuilder('session').getMany();
   }
 
   getSessionById(id) {
-    return this.findOne(id);
+    return this.dataSource.getRepository(Session).findOne({ where: { id: id } });
   }
 
   updateSession(id: number, updateSessionDto: UpdateSessionDto) {
@@ -23,6 +25,6 @@ export class SessionRepository extends Repository<Session> {
   }
 
   removeSession(id) {
-    this.delete(id);
+    this.dataSource.getRepository(Session).delete(id);
   }
 }
