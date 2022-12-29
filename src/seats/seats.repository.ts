@@ -1,24 +1,27 @@
-import { EntityRepository, Repository } from 'typeorm';
+import { Injectable } from '@nestjs/common';
+import { EntityRepository, Repository, DataSource } from 'typeorm';
 import { CreateSeatDto } from './dto/create-seat.dto';
 import { UpdateSeatDto } from './dto/update-seat.dto';
 import { Seat } from './entities/seat.entity';
 
-@EntityRepository(Seat)
-export class SeatsRepository extends Repository<Seat> {
+
+@Injectable()
+export class SeatsRepository {
+  constructor(private dataSource: DataSource) { }
   createSeat(room) {
-    const seat = this.create({ room: room });
-    return this.save(seat);
+    const seat = this.dataSource.getRepository(Seat).create({ room: room });
+    return this.dataSource.getRepository(Seat).save(seat);
   }
 
   getAllSeats() {
-    return this.createQueryBuilder('seat').getMany();
+    return this.dataSource.getRepository(Seat).createQueryBuilder('seat').getMany();
   }
 
   getSeatById(id) {
-    return this.findOne(id);
+    return this.dataSource.getRepository(Seat).findOne(id);
   }
 
-  removeSeat(id: number) {
-    return;
+  removeSeat(id) {
+    return this.dataSource.getRepository(Seat).delete(id);
   }
 }

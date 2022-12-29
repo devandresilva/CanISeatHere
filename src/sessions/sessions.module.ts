@@ -16,6 +16,6 @@ import { ReservesModule } from 'src/reserves/reserves.module';
   ],
   controllers: [SessionsController],
   providers: [SessionsService],
-  exports: [SessionsModule],
+  exports: [SessionsService],
 })
 export class SessionsModule { }

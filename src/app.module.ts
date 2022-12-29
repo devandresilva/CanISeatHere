@@ -25,7 +25,7 @@ import { DataSource } from 'typeorm';
       entities: [Room, Movie, Session, Reserve, Seat],
       synchronize: true,
     }),
-    // SeatsModule,
+    SeatsModule,
     MoviesModule,
     RoomsModule,
     // // SessionsModule,

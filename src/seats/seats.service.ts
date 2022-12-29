@@ -7,12 +7,13 @@ import { RoomsService } from 'src/rooms/rooms.service';
 @Injectable()
 export class SeatsService {
   constructor(
-    private readonly seatsRepository: SeatsRepository,
+    private seatsRepository: SeatsRepository,
     private roomsService: RoomsService,
-  ) {}
+  ) { }
 
-  createSeat(createSeatDto: CreateSeatDto) {
-    const room = this.roomsService.getRoomById(createSeatDto.roomId);
+  async createSeat(createSeatDto: CreateSeatDto) {
+    const room = await this.roomsService.getRoomById(createSeatDto.roomId);
+    console.log(room)
     return this.seatsRepository.createSeat(room);
   }
 

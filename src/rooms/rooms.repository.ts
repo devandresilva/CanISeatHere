@@ -23,7 +23,7 @@ export class RoomsRepository {
   }
 
   getRoomById(id) {
-    return this.dataSouce.getRepository(Room).findOne(id);
+    return this.dataSouce.getRepository(Room).findOne({ where: { id: id } });
   }
 
   removeRoom(id) {
