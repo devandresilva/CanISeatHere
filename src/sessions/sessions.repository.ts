@@ -4,7 +4,7 @@ import { CreateSessionDto } from './dto/create-session.dto';
 import { UpdateSessionDto } from './dto/update-session.dto';
 
 @EntityRepository()
-export class SessionReposiroty extends Repository<Session> {
+export class SessionRepository extends Repository<Session> {
   createSession(date, start, end, movie, room) {
     const session = this.create({ date, start, end, movie, room });
     return this.save(session);

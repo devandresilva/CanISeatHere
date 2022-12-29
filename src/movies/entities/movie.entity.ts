@@ -9,7 +9,7 @@ export class Movie {
   @Column()
   synopsis: string;
   @Column()
-  exhibitionDate: Date;
+  exhibitionDate: string;
 
   @OneToMany(type => Session, session => session.movie)
   session: Session[];

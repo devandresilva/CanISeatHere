@@ -1,27 +1,32 @@
+
+import { Injectable } from '@nestjs/common';
 import { Room } from './entities/room.entity';
 import { CreateRoomDto } from './dto/create-room.dto';
 import { UpdateRoomDto } from './dto/update-room.dto';
-import { EntityRepository, Repository } from 'typeorm';
+import { EntityRepository, Repository, DataSource } from 'typeorm';
 
-@EntityRepository()
-export class RoomsRepository extends Repository<Room> {
+@Injectable()
+export class RoomsRepository {
+
+  constructor(private dataSouce: DataSource) { }
+
   createRoom(createRoomDto: CreateRoomDto) {
     const { name } = createRoomDto;
-    const room = this.create({
+    const room = this.dataSouce.getRepository(Room).create({
       name: name,
     });
-    return this.save(room);
+    return this.dataSouce.getRepository(Room).save(room);
   }
 
   getAllRooms() {
-    return this.createQueryBuilder('room').getMany();
+    return this.dataSouce.getRepository(Room).createQueryBuilder('room').getMany();
   }
 
   getRoomById(id) {
-    return this.findOne(id);
+    return this.dataSouce.getRepository(Room).findOne(id);
   }
 
   removeRoom(id) {
-    return this.delete(id);
+    return this.dataSouce.getRepository(Room).delete(id);
   }
 }

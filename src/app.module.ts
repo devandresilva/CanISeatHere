@@ -25,16 +25,16 @@ import { DataSource } from 'typeorm';
       entities: [Room, Movie, Session, Reserve, Seat],
       synchronize: true,
     }),
-    SeatsModule,
+    // SeatsModule,
     MoviesModule,
     RoomsModule,
-    SessionsModule,
-    ReservesModule,
-    AuthModule,
+    // // SessionsModule,
+    // ReservesModule,
+    // AuthModule,
   ],
   controllers: [],
   providers: [],
 })
 export class AppModule {
-  constructor(private dataSource: DataSource) {}
+  constructor(private dataSource: DataSource) { }
 }

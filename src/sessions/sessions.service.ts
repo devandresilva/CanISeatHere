@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateSessionDto } from './dto/create-session.dto';
 import { UpdateSessionDto } from './dto/update-session.dto';
-import { SessionReposiroty } from './sessions.repository';
+import { SessionRepository } from './sessions.repository';
 import { MoviesService } from 'src/movies/movies.service';
 import { RoomsService } from 'src/rooms/rooms.service';
 import { ReservesService } from 'src/reserves/reserves.service';
@@ -9,11 +9,11 @@ import { ReservesService } from 'src/reserves/reserves.service';
 @Injectable()
 export class SessionsService {
   constructor(
-    private readonly sessionsRepository: SessionReposiroty,
+    private readonly sessionsRepository: SessionRepository,
     private movieService: MoviesService,
     private roomService: RoomsService,
     private reserveService: ReservesService,
-  ) {}
+  ) { }
 
   createSession(createSessionDto: CreateSessionDto) {
     const movie = this.movieService.getMovieById(createSessionDto.movieId);

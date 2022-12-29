@@ -5,7 +5,7 @@ import { UpdateRoomDto } from './dto/update-room.dto';
 
 @Controller('rooms')
 export class RoomsController {
-  constructor(private readonly roomsService: RoomsService) {}
+  constructor(private readonly roomsService: RoomsService) { }
 
   @Post()
   createRoom(@Body() createRoomDto: CreateRoomDto) {
@@ -22,10 +22,6 @@ export class RoomsController {
     return this.roomsService.getRoomById(id);
   }
 
-  @Patch(':id')
-  updateRoom(@Param('id') id: number, @Body() updateRoomDto: UpdateRoomDto) {
-    return this.roomsService.updateRoom(id, updateRoomDto);
-  }
 
   @Delete(':id')
   removeRoom(@Param('id') id: number) {

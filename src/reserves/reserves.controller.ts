@@ -5,7 +5,7 @@ import { UpdateReserveDto } from './dto/update-reserve.dto';
 
 @Controller('reserves')
 export class ReservesController {
-  constructor(private readonly reservesService: ReservesService) {}
+  constructor(private readonly reservesService: ReservesService) { }
 
   @Post()
   createReserve(@Body() createReserveDto: CreateReserveDto) {
@@ -24,7 +24,7 @@ export class ReservesController {
 
   @Patch(':id')
   updateReserve(@Param('id') id: number, @Body() updateReserveDto: UpdateReserveDto) {
-    return this.reservesService.updateReserve(id, updateReserveDto);
+    return 'fazer'
   }
 
   @Delete(':id')

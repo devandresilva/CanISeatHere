@@ -1,27 +1,31 @@
 import { Movie } from './entities/movie.entity';
 import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
-import { EntityRepository, Repository } from 'typeorm';
+import { EntityRepository, Repository, DataSource } from 'typeorm';
 import { Injectable } from '@nestjs/common/decorators';
 
 @Injectable()
-export class MoviesRepository extends Repository<Movie> {
+export class MoviesRepository {
+
+  constructor(
+    private dataSource: DataSource
+  ) { }
   createMovie(createMovieDto: CreateMovieDto) {
     const { name, synopsis, exhibitionDate } = createMovieDto;
-    const movie = this.create({
+    const movie = this.dataSource.getRepository(Movie).create({
       name: name,
       synopsis: synopsis,
       exhibitionDate: exhibitionDate,
     });
-    return this.save(movie);
+    return this.dataSource.getRepository(Movie).save(movie);
   }
 
   getAllMovies() {
-    return this.createQueryBuilder('movie').getMany();
+    return this.dataSource.getRepository(Movie).createQueryBuilder('movie').getMany();
   }
 
   getMovieById(id) {
-    return this.findOne(id);
+    return this.dataSource.getRepository(Movie).findOne(id);
   }
 
   async updateMovie(id: number, updateMovieDto: UpdateMovieDto) {
@@ -30,10 +34,10 @@ export class MoviesRepository extends Repository<Movie> {
     movie.name = name;
     movie.synopsis = synopsis;
     movie.exhibitionDate = exhibitionDate;
-    return this.save(movie);
+    return this.dataSource.getRepository(Movie).save(movie);
   }
 
   removeMovie(id: number) {
-    return this.delete(id);
+    return this.dataSource.getRepository(Movie).delete(id);
   }
 }
