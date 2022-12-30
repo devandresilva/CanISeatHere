@@ -35,7 +35,7 @@ $ npm run start:dev
 
 ## CRUD da tabela movies
 
-<h2><span style="color: green">GET</span> Listar Filmes</h2>
+<p style="font-size: 1.5rem"><span style="color: green">GET</span> Listar Filmes</p>
 ENDPOINT: <span style="color: green">GET</span> /movies
 <br>ENTRADA: Nenhuma
 <br>SAÍDA: JSON listando todos os filmes
@@ -58,7 +58,7 @@ ENDPOINT: <span style="color: green">GET</span> /movies
 ]
 ```
 
-<h2><span style="color: lime">GET</span> Retornar filme com id específico</h2>
+<p style="font-size: 1.5rem"><span style="color: lime">GET</span> Retornar filme com id específico</p>
 ENDPOINT: <span style="color: lime">GET</span> /movies/<b>:id</b>
 <br>ENTRADA:
 <table style="border-collapse: collapse; border: 1px solid black">
