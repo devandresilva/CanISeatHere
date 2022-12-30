@@ -12,9 +12,9 @@ export class Session {
   @Column()
   end: string;
 
-  @ManyToOne(type => Movie, movie => movie.session)
+  @ManyToOne(type => Movie, movie => movie.session, { eager: true })
   movie: Movie;
 
-  @ManyToOne(type => Room, room => room.session)
+  @ManyToOne(type => Room, room => room.session, { eager: true })
   room: Room;
 }
