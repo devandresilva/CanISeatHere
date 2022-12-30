@@ -35,8 +35,8 @@ $ npm run start:dev
 
 ## CRUD da tabela movies
 
-<h2><span style="color: green">GET</span> Listar Filmes</h2>
-ENDPOINT: <span style="color: green">GET</span> /movies
+<h2> GET Listar Filmes</h2>
+ENDPOINT: GET /movies
 <br>ENTRADA: Nenhuma
 <br>SAÍDA: JSON listando todos os filmes
 <br>EXEMPLO DE SAÍDA:
@@ -58,19 +58,14 @@ ENDPOINT: <span style="color: green">GET</span> /movies
 ]
 ```
 
-<h2><span style="color: lime">GET</span> Retornar filme com id específico</h2>
-ENDPOINT: <span style="color: lime">GET</span> /movies/<b>:id</b>
+<h2>GET Retornar filme com id específico</h2>
+ENDPOINT: GET /movies/<b>:id</b>
 <br>ENTRADA:
-<table style="border-collapse: collapse; border: 1px solid black">
-  <tr>
-    <th style=" border: 1px solid black">Atributo</th>
-    <th style=" border: 1px solid black">Descrição</th>
-  </tr>
-  <tr>
-    <td style=" border: 1px solid black">id</td>
-    <td style=" border: 1px solid black">id do filme que será retornado</td>
-  </tr>
-</table>
+
+| atributos | descrição                      |
+|-----------|--------------------------------|
+| id        | id do filme que será retornado |
+
 SAÍDA: JSON com informações do filme especificado
 <br>EXEMPLO DE SAÍDA:
 
@@ -85,21 +80,83 @@ SAÍDA: JSON com informações do filme especificado
 ]
 ```
 
+<h2>POST Criar Filme</h2>
+ENDPOINT: POST /movies/
+<br>ENTRADA:
 
+| atributos      | descrição                       |
+|----------------|---------------------------------|
+| name           | nome do filme a ser criado      |
+| synopsis       | descrição do filme a ser criado |
+| exhibitionDate | data de exibição do filme       |
 
+SAÍDA: JSON com informações do filme criado
+<br>EXEMPLO DE SAÍDA:
 
+```bash
+[
+  {
+    "id": 3,
+    "name": "nome do filme criado",
+    "synopsis": "descrição do filme criado"
+    "exhibitionDate": "2023-02-12T16:30:00.000Z"
+  }
+]
+```
 
+<h2>PATCH Alterar Filme</h2>
+ENDPOINT: PATCH /movies<b>/:id</b>
+<br>ENTRADA:
 
+| atributos      | descrição                       |
+|----------------|---------------------------------|
+| id             | id do filme a ser alterado      |
+| name           | nome do filme a ser alterado      |
+| synopsis       | descrição do filme a ser alterado |
+| exhibitionDate | data de exibição do filme a ser alterado |
 
+SAÍDA: JSON com informações alteradas do filme
+<br>EXEMPLO DE <b>ENTRADA</b>:
 
+```bash
+[
+  {
+    "name": "nome do filme alterado",
+    "synopsis": "descrição do filme alterado"
+    "exhibitionDate": "2023-05-24T16:30:00.000Z"
+  }
+]
+```
+EXEMPLO DE SAÍDA:
+```bash
+[
+  {
+    "id": 3,
+    "name": "nome do filme alterado",
+    "synopsis": "descrição do filme alterado"
+    "exhibitionDate": "2023-05-24T16:30:00.000Z"
+  }
+]
+```
 
+<h2>DELETE Remover Filme</h2>
+ENDPOINT: DELETE /movies/<b>:id</b>
+<br>ENTRADA:
 
-## Stay in touch
+| atributos      | descrição                       |
+|----------------|---------------------------------|
+| id           | id do filme a ser removido      |
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+SAÍDA: JSON com informações do filme removido
+<br>EXEMPLO DE SAÍDA:
 
-## License
-
-Nest is [MIT licensed](LICENSE).
+```bash
+[
+  {
+    "id": 3,
+    "name": "nome do filme removido",
+    "synopsis": "descrição do filme removido"
+    "exhibitionDate": "2023-05-24T16:30:00.000Z"
+  }
+]
+```
