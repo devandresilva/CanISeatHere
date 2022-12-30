@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { CreateSessionDto } from './dto/create-session.dto';
 import { UpdateSessionDto } from './dto/update-session.dto';
 import { SessionRepository } from './sessions.repository';
@@ -9,15 +9,16 @@ import { ReservesService } from 'src/reserves/reserves.service';
 @Injectable()
 export class SessionsService {
   constructor(
-    private readonly sessionsRepository: SessionRepository,
+    private sessionsRepository: SessionRepository,
+    @Inject(forwardRef(() => MoviesService))
     private movieService: MoviesService,
     private roomService: RoomsService,
     private reserveService: ReservesService,
   ) { }
 
-  createSession(createSessionDto: CreateSessionDto) {
-    const movie = this.movieService.getMovieById(createSessionDto.movieId);
-    const room = this.roomService.getRoomById(createSessionDto.roomId);
+  async createSession(createSessionDto: CreateSessionDto) {
+    const movie = await this.movieService.getMovieById(createSessionDto.movieId);
+    const room = await this.roomService.getRoomById(createSessionDto.roomId);
     const { date, start, end } = createSessionDto;
     return this.sessionsRepository.createSession(date, start, end, movie, room);
   }
@@ -26,7 +27,6 @@ export class SessionsService {
     const session = await this.getSessionById(id);
     const room = await this.roomService.getRoomById(session.room.id);
     const reserves = await this.reserveService.getAllReserves();
-    // pegar seates que não estão presentes em reservas
     const disponiblesSeats = room.seats.filter((seat) => {
       return !reserves.some((reserve) => reserve.seat.id === seat.id);
     });

@@ -1,7 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { EntityRepository, Repository, DataSource } from 'typeorm';
-import { CreateSeatDto } from './dto/create-seat.dto';
-import { UpdateSeatDto } from './dto/update-seat.dto';
+import { DataSource } from 'typeorm';
 import { Seat } from './entities/seat.entity';
 
 

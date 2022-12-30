@@ -1,6 +1,6 @@
-import { EntityRepository, Repository, DataSource } from 'typeorm';
+import { DataSource } from 'typeorm';
 import { Session } from './entities/session.entity';
-import { CreateSessionDto } from './dto/create-session.dto';
+
 import { UpdateSessionDto } from './dto/update-session.dto';
 import { Injectable } from '@nestjs/common';
 

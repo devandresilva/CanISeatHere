@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { CreateReserveDto } from './dto/create-reserve.dto';
 import { UpdateReserveDto } from './dto/update-reserve.dto';
 import { ReservesRepository } from './reserves.repository';
@@ -9,9 +9,10 @@ import { SeatsService } from 'src/seats/seats.service';
 export class ReservesService {
   constructor(
     private readonly reservesRepository: ReservesRepository,
+    @Inject(forwardRef(() => SessionsService))
     private sessionService: SessionsService,
     private seatService: SeatsService,
-  ) {}
+  ) { }
 
   async createReserve(createReserveDto: CreateReserveDto) {
     const session = await this.sessionService.getSessionById(

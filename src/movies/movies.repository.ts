@@ -25,7 +25,7 @@ export class MoviesRepository {
   }
 
   getMovieById(id) {
-    return this.dataSource.getRepository(Movie).findOne(id);
+    return this.dataSource.getRepository(Movie).findOne({ where: { id: id } });
   }
 
   async updateMovie(id: number, updateMovieDto: UpdateMovieDto) {

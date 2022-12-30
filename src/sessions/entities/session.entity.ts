@@ -6,11 +6,11 @@ export class Session {
   @PrimaryGeneratedColumn()
   id: number;
   @Column()
-  date: Date;
+  date: string;
   @Column()
-  start: Date;
+  start: string;
   @Column()
-  end: Date;
+  end: string;
 
   @ManyToOne(type => Movie, movie => movie.session)
   movie: Movie;

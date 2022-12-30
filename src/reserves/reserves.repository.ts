@@ -6,7 +6,7 @@ import { Reserve } from './entities/reserve.entity';
 @Injectable()
 export class ReservesRepository {
 
-  constructor(private dataSource: DataSource) { }
+  constructor(private dataSource: DataSource) {}
   createReserve(seat, session) {
     const reserve = this.dataSource.getRepository(Reserve).create({
       seat: seat,
