@@ -1,38 +1,28 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+  <img src="./public/CanISeatHere-Logo.png" width="200" alt="Nest Logo" />
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+  <p align="center">A API RESTful made by André Silva and Natália Simões</p>
     <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## Descrição
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+[Can I Seat Here?](https://github.com/devandresilva/caniseathere) É uma API RESTful feita com NestJS e criada a trabalho para a disciplina de <i>Desenvolvimento de Sistemas Corporativos</i>, ministrada pelo professor Gustavo Sizílio Nery.
 
-## Installation
+
+## Introdução
+
+A API foi desenvolvida com base no ato de fazer uma reserva/comprar um ingresso para assistir um filme no cinema, onde o cliente pode solicitar a reserva de um determinado assento em uma sessão do cinema, que é composta pelo filme e a sala onde ocorrerá a sessão.
+
+
+## Instalação
 
 ```bash
 $ npm install
 ```
 
-## Running the app
+
+## Executando a API
 
 ```bash
 # development
@@ -40,34 +30,133 @@ $ npm run start
 
 # watch mode
 $ npm run start:dev
-
-# production mode
-$ npm run start:prod
 ```
 
-## Test
+
+## CRUD da tabela movies
+
+<h2> GET Listar Filmes</h2>
+ENDPOINT: GET /movies
+<br>ENTRADA: Nenhuma
+<br>SAÍDA: JSON listando todos os filmes
+<br>EXEMPLO DE SAÍDA:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+[
+  {
+    "id": 1,
+    "name": "Batman vs Superman",
+    "synopsis": "O filme onde Batman confronta o Superman"
+    "exhibitionDate": "2023-01-06T20:30:00.000Z"
+  },
+  {
+    "id": 2,
+    "name": "Vingadores: Guerra Infinita",
+    "synopsis": "Os heróis mais fortes da terra vs Thanos"
+    "exhibitionDate": "2023-02-12T16:30:00.000Z"
+  }
+]
 ```
 
-## Support
+<h2>GET Retornar filme com id específico</h2>
+ENDPOINT: GET /movies/<b>:id</b>
+<br>ENTRADA:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+| atributos | descrição                      |
+|-----------|--------------------------------|
+| id        | id do filme que será retornado |
 
-## Stay in touch
+SAÍDA: JSON com informações do filme especificado
+<br>EXEMPLO DE SAÍDA:
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```bash
+[
+  {
+    "id": 2,
+    "name": "Vingadores: Guerra Infinita",
+    "synopsis": "Os heróis mais fortes da terra vs Thanos"
+    "exhibitionDate": "2023-02-12T16:30:00.000Z"
+  }
+]
+```
 
-## License
+<h2>POST Criar Filme</h2>
+ENDPOINT: POST /movies/
+<br>ENTRADA:
 
-Nest is [MIT licensed](LICENSE).
+| atributos      | descrição                       |
+|----------------|---------------------------------|
+| name           | nome do filme a ser criado      |
+| synopsis       | descrição do filme a ser criado |
+| exhibitionDate | data de exibição do filme       |
+
+SAÍDA: JSON com informações do filme criado
+<br>EXEMPLO DE SAÍDA:
+
+```bash
+[
+  {
+    "id": 3,
+    "name": "nome do filme criado",
+    "synopsis": "descrição do filme criado"
+    "exhibitionDate": "2023-02-12T16:30:00.000Z"
+  }
+]
+```
+
+<h2>PATCH Alterar Filme</h2>
+ENDPOINT: PATCH /movies<b>/:id</b>
+<br>ENTRADA:
+
+| atributos      | descrição                       |
+|----------------|---------------------------------|
+| id             | id do filme a ser alterado      |
+| name           | nome do filme a ser alterado      |
+| synopsis       | descrição do filme a ser alterado |
+| exhibitionDate | data de exibição do filme a ser alterado |
+
+SAÍDA: JSON com informações alteradas do filme
+<br>EXEMPLO DE <b>ENTRADA</b>:
+
+```bash
+[
+  {
+    "name": "nome do filme alterado",
+    "synopsis": "descrição do filme alterado"
+    "exhibitionDate": "2023-05-24T16:30:00.000Z"
+  }
+]
+```
+EXEMPLO DE SAÍDA:
+```bash
+[
+  {
+    "id": 3,
+    "name": "nome do filme alterado",
+    "synopsis": "descrição do filme alterado"
+    "exhibitionDate": "2023-05-24T16:30:00.000Z"
+  }
+]
+```
+
+<h2>DELETE Remover Filme</h2>
+ENDPOINT: DELETE /movies/<b>:id</b>
+<br>ENTRADA:
+
+| atributos      | descrição                       |
+|----------------|---------------------------------|
+| id           | id do filme a ser removido      |
+
+SAÍDA: JSON com informações do filme removido
+<br>EXEMPLO DE SAÍDA:
+
+```bash
+[
+  {
+    "id": 3,
+    "name": "nome do filme removido",
+    "synopsis": "descrição do filme removido"
+    "exhibitionDate": "2023-05-24T16:30:00.000Z"
+  }
+]
+```
