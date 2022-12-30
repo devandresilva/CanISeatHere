@@ -8,19 +8,19 @@
 ## Descrição
 
 [Can I Seat Here?](https://github.com/devandresilva/caniseathere) É uma API RESTful feita com NestJS e criada a trabalho para a disciplina de <i>Desenvolvimento de Sistemas Corporativos</i>, ministrada pelo professor Gustavo Sizílio Nery.
-<hr>
+
 
 ## Introdução
 
 A API foi desenvolvida com base no ato de fazer uma reserva/comprar um ingresso para assistir um filme no cinema, onde o cliente pode solicitar a reserva de um determinado assento em uma sessão do cinema, que é composta pelo filme e a sala onde ocorrerá a sessão.
-<hr>
+
 
 ## Instalação
 
 ```bash
 $ npm install
 ```
-<hr>
+
 
 ## Executando a API
 
@@ -31,7 +31,7 @@ $ npm run start
 # watch mode
 $ npm run start:dev
 ```
-<hr>
+
 
 ## CRUD da tabela movies
 
