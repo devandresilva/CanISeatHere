@@ -1,5 +1,5 @@
 import { Seat } from './../../seats/entities/seat.entity';
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, JoinTable } from 'typeorm';
 import { Session } from 'src/sessions/entities/session.entity';
 
 @Entity()
@@ -9,7 +9,7 @@ export class Room {
   @Column()
   name: string;
 
-  @OneToMany((type) => Seat, (seat) => seat.room)
+  @OneToMany((type) => Seat, (seat) => seat.room, { eager: true })
   seats: Seat[];
 
   @OneToMany((type) => Session, (session) => session.room)

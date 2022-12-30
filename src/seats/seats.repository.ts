@@ -6,8 +6,8 @@ import { Seat } from './entities/seat.entity';
 @Injectable()
 export class SeatsRepository {
   constructor(private dataSource: DataSource) { }
-  createSeat(room) {
-    const seat = this.dataSource.getRepository(Seat).create({ room: room });
+  createSeat(room, seatNumber) {
+    const seat = this.dataSource.getRepository(Seat).create({ room: room, seatNumber: seatNumber });
     return this.dataSource.getRepository(Seat).save(seat);
   }
 

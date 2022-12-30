@@ -19,10 +19,10 @@ export class ReservesService {
       createReserveDto.sessionId,
     );
     const seat = await this.seatService.getSeatById(createReserveDto.seatId);
-    console.log(session, seat);
+    const seatsOnRoom = session.room.seats;
     if (session && seat) {
-      if (seat.room.id === session.room.id) {
-        return this.reservesRepository.createReserve(session, seat);
+      if (seatsOnRoom.find(seats => seats.id === seat.id)) {
+        return this.reservesRepository.createReserve(seat, session);
       } else {
         return 'Essa cadeira não pertence a sala dessa sessão'
       }
@@ -30,6 +30,10 @@ export class ReservesService {
       return 'Sessão ou cadeira não encontrada'
     }
 
+  }
+
+  getReservesBySessionId(id: number) {
+    return this.reservesRepository.getReservesBySessionId(id);
   }
 
   getAllReserves() {

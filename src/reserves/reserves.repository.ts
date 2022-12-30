@@ -6,7 +6,7 @@ import { Reserve } from './entities/reserve.entity';
 @Injectable()
 export class ReservesRepository {
 
-  constructor(private dataSource: DataSource) {}
+  constructor(private dataSource: DataSource) { }
   createReserve(seat, session) {
     const reserve = this.dataSource.getRepository(Reserve).create({
       seat: seat,
@@ -19,8 +19,13 @@ export class ReservesRepository {
     return this.dataSource.getRepository(Reserve).createQueryBuilder('reserve').getMany();
   }
 
+
+  getReservesBySessionId(id) {
+    return this.dataSource.getRepository(Reserve).find({ where: { session: id } });
+  }
+
   getReserveById(id) {
-    return this.dataSource.getRepository(Reserve).findOne({ where: { id: id } });
+    return this.dataSource.getRepository(Reserve).createQueryBuilder('reserve').where('reserve.id = :id', { id: id }).getOne();
   }
 
   removeReserve(id) {

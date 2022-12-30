@@ -5,7 +5,7 @@ import { UpdateSessionDto } from './dto/update-session.dto';
 
 @Controller('sessions')
 export class SessionsController {
-  constructor(private readonly sessionsService: SessionsService) {}
+  constructor(private readonly sessionsService: SessionsService) { }
 
   @Post()
   createSession(@Body() createSessionDto: CreateSessionDto) {
@@ -20,6 +20,11 @@ export class SessionsController {
   @Get(':id')
   getSessionById(@Param('id') id: number) {
     return this.sessionsService.getSessionById(id);
+  }
+
+  @Get(':id/seats')
+  getAllSeatsDispobibleBySessionId(@Param('id') id: number) {
+    return this.sessionsService.getAllSeatsDispobibleBySessionId(id);
   }
 
   @Patch(':id')
