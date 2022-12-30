@@ -9,6 +9,6 @@ export class Reserve {
   @OneToMany(() => Session, (session) => session.id)
   session: Session;
 
-  @OneToMany(() => Seat, (seat) => seat.id)
+  @OneToMany(() => Seat, (seat) => seat.id, { eager: true })
   seat: Seat;
 }

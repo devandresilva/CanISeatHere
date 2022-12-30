@@ -5,6 +5,6 @@ export class Seat {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(type => Room, room => room.seats)
+  @ManyToOne(type => Room, room => room.seats, { eager: true })
   room: Room;
 }

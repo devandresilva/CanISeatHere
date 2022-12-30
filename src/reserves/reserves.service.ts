@@ -19,12 +19,17 @@ export class ReservesService {
       createReserveDto.sessionId,
     );
     const seat = await this.seatService.getSeatById(createReserveDto.seatId);
+    console.log(session, seat);
     if (session && seat) {
-      if (session.room !== seat.room) {
-        throw new Error('The seat does not belong to the room of the session');
+      if (seat.room.id === session.room.id) {
+        return this.reservesRepository.createReserve(session, seat);
+      } else {
+        return 'Essa cadeira não pertence a sala dessa sessão'
       }
+    } else {
+      return 'Sessão ou cadeira não encontrada'
     }
-    return this.reservesRepository.createReserve(session, seat);
+
   }
 
   getAllReserves() {
