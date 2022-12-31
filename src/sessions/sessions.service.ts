@@ -26,13 +26,12 @@ export class SessionsService {
   async getAllSeatsAvaliableBySessionId(id) {
     const session = await this.getSessionById(id);
     const room = await this.roomService.getRoomById(session.room.id);
-    const reserves = await this.reserveService.getAllReserves();
-    console.log(reserves);
-    console.log(room)
-    console.log(room.seats);
+    const reserves = await this.reserveService.getReservesBySessionId(id);
+    const reservesSeatsIds = reserves.map((reserve) => reserve.seat.id);
     const disponiblesSeats = room.seats.filter((seat) => {
-      return
+      return !reservesSeatsIds.includes(seat.id);
     });
+    return disponiblesSeats;
   }
 
   getAllSessions() {
