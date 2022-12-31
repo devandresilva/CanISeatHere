@@ -1,6 +1,6 @@
 import { Reserve } from 'src/reserves/entities/reserve.entity';
 import { Room } from 'src/rooms/entities/room.entity';
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm';
 @Entity()
 export class Seat {
   @PrimaryGeneratedColumn()
@@ -12,6 +12,6 @@ export class Seat {
   @ManyToOne(type => Room, room => room.seats)
   room: Room;
 
-  @ManyToOne(type => Reserve, reserve => reserve.seat)
+  @OneToMany(type => Reserve, reserve => reserve.seat)
   reserve: Reserve[];
 }

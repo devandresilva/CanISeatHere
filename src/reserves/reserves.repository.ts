@@ -21,11 +21,12 @@ export class ReservesRepository {
 
 
   getReservesBySessionId(id) {
-    return this.dataSource.getRepository(Reserve).find({ where: { session: id } });
+    return this.dataSource.getRepository(Reserve).createQueryBuilder('reserve').where('reserve.sessionId = :id', { id: id }).leftJoinAndSelect('reserve.seat', 'seat').getMany();
   }
 
   getReserveById(id) {
-    return this.dataSource.getRepository(Reserve).createQueryBuilder('reserve').where('reserve.id = :id', { id: id }).getOne();
+    return this.dataSource.getRepository(Reserve).findOne({ where: { id: id } })
+
   }
 
   removeReserve(id) {

@@ -25,8 +25,8 @@ export class SessionsController {
   }
 
   @Get(':id/seats')
-  getAllSeatsDispobibleBySessionId(@Param('id') id: number) {
-    return this.sessionsService.getAllSeatsDispobibleBySessionId(id);
+  getAllSeatsAvaliableBySessionId(@Param('id') id: number) {
+    return this.sessionsService.getAllSeatsAvaliableBySessionId(id);
   }
 
   @Patch(':id')

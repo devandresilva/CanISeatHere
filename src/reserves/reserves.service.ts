@@ -20,6 +20,8 @@ export class ReservesService {
     );
     const seat = await this.seatService.getSeatById(createReserveDto.seatId);
     const seatsOnRoom = session.room.seats;
+    console.log(seat);
+    console.log(session)
     if (session && seat) {
       if (seatsOnRoom.find(seats => seats.id === seat.id)) {
         return this.reservesRepository.createReserve(seat, session);

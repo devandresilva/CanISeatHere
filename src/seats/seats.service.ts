@@ -13,7 +13,6 @@ export class SeatsService {
 
   async createSeat(createSeatDto: CreateSeatDto) {
     const room = await this.roomsService.getRoomById(createSeatDto.roomId);
-    console.log(room)
     return this.seatsRepository.createSeat(room, createSeatDto.seatNumber);
   }
 

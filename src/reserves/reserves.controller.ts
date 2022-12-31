@@ -24,6 +24,11 @@ export class ReservesController {
     return this.reservesService.getReserveById(id);
   }
 
+  @Get('session/:id')
+  getReservesBySessionId(@Param('id') id: number) {
+    return this.reservesService.getReservesBySessionId(id);
+  }
+
   @Patch(':id')
   updateReserve(@Param('id') id: number, @Body() updateReserveDto: UpdateReserveDto) {
     return 'fazer'

@@ -23,7 +23,7 @@ export class SessionsService {
     return this.sessionsRepository.createSession(date, start, end, movie, room);
   }
 
-  async getAllSeatsDispobibleBySessionId(id) {
+  async getAllSeatsAvaliableBySessionId(id) {
     const session = await this.getSessionById(id);
     const room = await this.roomService.getRoomById(session.room.id);
     const reserves = await this.reserveService.getAllReserves();
