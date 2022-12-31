@@ -2,8 +2,9 @@ import { Entity, EntityRepository, Repository, DataSource } from 'typeorm';
 import { User } from './user.entity';
 import { CreateUserDTO } from './dto/create-user.dto';
 import * as bcrypt from 'bcrypt';
+import { Injectable } from '@nestjs/common';
 
-@Entity()
+@Injectable()
 export class UsersRepository {
   constructor(private dataSource: DataSource) { }
   async createUser(createUserDTO: CreateUserDTO): Promise<User> {

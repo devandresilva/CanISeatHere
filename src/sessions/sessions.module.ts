@@ -7,6 +7,7 @@ import { SessionRepository } from './sessions.repository';
 import { RoomsModule } from 'src/rooms/rooms.module';
 import { ReservesModule } from 'src/reserves/reserves.module';
 import { Session } from './entities/session.entity';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { Session } from './entities/session.entity';
     MoviesModule,
     RoomsModule,
     ReservesModule,
+    AuthModule
   ],
   controllers: [SessionsController],
   providers: [SessionsService, SessionRepository],

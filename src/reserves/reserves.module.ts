@@ -1,3 +1,4 @@
+import { AuthModule } from './../auth/auth.module';
 import { SessionsModule } from 'src/sessions/sessions.module';
 import { forwardRef, Module } from '@nestjs/common';
 import { ReservesService } from './reserves.service';
@@ -12,6 +13,7 @@ import { Reserve } from './entities/reserve.entity';
     TypeOrmModule.forFeature([Reserve]),
     forwardRef(() => SessionsModule),
     SeatsModule,
+    AuthModule
   ],
   controllers: [ReservesController],
   providers: [ReservesService, ReservesRepository],

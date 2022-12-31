@@ -1,3 +1,4 @@
+import { AuthModule } from './../auth/auth.module';
 import { Module } from '@nestjs/common';
 import { SeatsService } from './seats.service';
 import { SeatsController } from './seats.controller';
@@ -7,7 +8,7 @@ import { RoomsModule } from 'src/rooms/rooms.module';
 import { Seat } from './entities/seat.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Seat]), RoomsModule],
+  imports: [TypeOrmModule.forFeature([Seat]), RoomsModule, AuthModule],
   controllers: [SeatsController],
   providers: [SeatsService, SeatsRepository],
   exports: [SeatsService],

@@ -28,6 +28,7 @@ export class AuthService {
       const accessToken = this.jwtService.sign(payload);
       return { accessToken };
     } else {
+      console.log('Please check your login credentials');
       throw new UnauthorizedException('Please check your login credentials');
     }
   }

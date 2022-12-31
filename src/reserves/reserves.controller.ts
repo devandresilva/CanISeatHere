@@ -1,9 +1,11 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
 import { ReservesService } from './reserves.service';
 import { CreateReserveDto } from './dto/create-reserve.dto';
 import { UpdateReserveDto } from './dto/update-reserve.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('reserves')
+@UseGuards(AuthGuard('jwt'))
 export class ReservesController {
   constructor(private readonly reservesService: ReservesService) { }
 

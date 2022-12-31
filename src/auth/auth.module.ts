@@ -12,7 +12,7 @@ import { User } from './user.entity';
   imports: [
     TypeOrmModule.forFeature([User]),
     PassportModule.register({ defaultStrategy: 'jwt' }),
-    JwtModule.register({ secret: 'antonio', signOptions: { expiresIn: '1h' } }),
+    JwtModule.register({ secret: 'antonio', signOptions: { expiresIn: 3600 } }),
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy, UsersRepository],
