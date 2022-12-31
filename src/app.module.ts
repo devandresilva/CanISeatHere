@@ -1,3 +1,4 @@
+import { User } from './auth/user.entity';
 import { Module } from '@nestjs/common';
 import { SeatsModule } from './seats/seats.module';
 import { MoviesModule } from './movies/movies.module';
@@ -22,7 +23,7 @@ import { DataSource } from 'typeorm';
       username: 'root',
       password: null,
       database: 'senteaqui',
-      entities: [Room, Movie, Session, Reserve, Seat],
+      entities: [Room, Movie, Session, Reserve, Seat, User],
       synchronize: true,
     }),
     SeatsModule,
@@ -30,7 +31,7 @@ import { DataSource } from 'typeorm';
     RoomsModule,
     SessionsModule,
     ReservesModule,
-    // AuthModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],
