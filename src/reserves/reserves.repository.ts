@@ -7,10 +7,11 @@ import { Reserve } from './entities/reserve.entity';
 export class ReservesRepository {
 
   constructor(private dataSource: DataSource) { }
-  createReserve(seat, session) {
+  createReserve(seat, session, user) {
     const reserve = this.dataSource.getRepository(Reserve).create({
       seat: seat,
       session: session,
+      user: user
     });
     return this.dataSource.getRepository(Reserve).save(reserve);
   }

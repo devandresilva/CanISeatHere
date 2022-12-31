@@ -14,7 +14,7 @@ export class ReservesService {
     private seatService: SeatsService,
   ) { }
 
-  async createReserve(createReserveDto: CreateReserveDto) {
+  async createReserve(createReserveDto: CreateReserveDto, user) {
     const session = await this.sessionService.getSessionById(
       createReserveDto.sessionId,
     );
@@ -24,7 +24,7 @@ export class ReservesService {
     console.log(session)
     if (session && seat) {
       if (seatsOnRoom.find(seats => seats.id === seat.id)) {
-        return this.reservesRepository.createReserve(seat, session);
+        return this.reservesRepository.createReserve(seat, session, user);
       } else {
         return 'Essa cadeira não pertence a sala dessa sessão'
       }

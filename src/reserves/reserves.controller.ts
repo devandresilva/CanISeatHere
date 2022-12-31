@@ -1,8 +1,10 @@
+import { User } from './../auth/user.entity';
 import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
 import { ReservesService } from './reserves.service';
 import { CreateReserveDto } from './dto/create-reserve.dto';
 import { UpdateReserveDto } from './dto/update-reserve.dto';
 import { AuthGuard } from '@nestjs/passport';
+import { GetUser } from 'src/auth/get-user.decorator';
 
 @Controller('reserves')
 @UseGuards(AuthGuard('jwt'))
@@ -10,8 +12,9 @@ export class ReservesController {
   constructor(private readonly reservesService: ReservesService) { }
 
   @Post()
-  createReserve(@Body() createReserveDto: CreateReserveDto) {
-    return this.reservesService.createReserve(createReserveDto);
+
+  createReserve(@Body() createReserveDto: CreateReserveDto, @GetUser() user: User) {
+    return this.reservesService.createReserve(createReserveDto, user);
   }
 
   @Get()
