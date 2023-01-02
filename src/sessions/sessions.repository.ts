@@ -30,6 +30,6 @@ export class SessionRepository {
   }
 
   removeSession(id) {
-    this.dataSource.getRepository(Session).delete(id);
+    return this.dataSource.getRepository(Session).delete(id);
   }
 }
