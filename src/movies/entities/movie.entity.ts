@@ -8,8 +8,6 @@ export class Movie {
   name: string;
   @Column()
   synopsis: string;
-  @Column()
-  exhibitionDate: string;
 
   @OneToMany(type => Session, session => session.movie)
   session: Session[];

@@ -11,11 +11,10 @@ export class MoviesRepository {
     private dataSource: DataSource
   ) { }
   createMovie(createMovieDto: CreateMovieDto) {
-    const { name, synopsis, exhibitionDate } = createMovieDto;
+    const { name, synopsis } = createMovieDto;
     const movie = this.dataSource.getRepository(Movie).create({
       name: name,
-      synopsis: synopsis,
-      exhibitionDate: exhibitionDate,
+      synopsis: synopsis
     });
     return this.dataSource.getRepository(Movie).save(movie);
   }
@@ -29,11 +28,10 @@ export class MoviesRepository {
   }
 
   async updateMovie(id: number, updateMovieDto: UpdateMovieDto) {
-    const { name, synopsis, exhibitionDate } = updateMovieDto;
+    const { name, synopsis } = updateMovieDto;
     let movie = await this.getMovieById(id);
     movie.name = name;
     movie.synopsis = synopsis;
-    movie.exhibitionDate = exhibitionDate;
     return this.dataSource.getRepository(Movie).save(movie);
   }
 

@@ -20,8 +20,13 @@ export class SessionRepository {
     return this.dataSource.getRepository(Session).findOne({ where: { id: id } });
   }
 
-  updateSession(id: number, updateSessionDto: UpdateSessionDto) {
-    return '';
+  async updateSession(id: number, updateSessionDto: UpdateSessionDto) {
+    const { date, start, end } = updateSessionDto;
+    let session = await this.getSessionById(id);
+    session.date = date;
+    session.start = start;
+    session.end = end;
+    return this.dataSource.getRepository(Session).save(session);
   }
 
   removeSession(id) {

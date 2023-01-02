@@ -26,6 +26,13 @@ export class RoomsRepository {
     return this.dataSouce.getRepository(Room).findOne({ where: { id: id } });
   }
 
+  async updateRoom(id: number, updateRoomDto: UpdateRoomDto) {
+    const { name } = updateRoomDto;
+    let room = await this.getRoomById(id);
+    room.name = name;
+    return this.dataSouce.getRepository(Room).save(room);
+  }
+
   removeRoom(id) {
     return this.dataSouce.getRepository(Room).delete(id);
   }

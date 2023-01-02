@@ -15,11 +15,15 @@ export class RoomsService {
     return this.roomRepository.getAllRooms();
   }
 
-  getRoomById(id) {
+  getRoomById(id: number) {
     return this.roomRepository.getRoomById(id);
   }
 
-  removeRoom(id) {
+  updateRoom(id: number, updateRoomDto: UpdateRoomDto) {
+    return this.roomRepository.updateRoom(id, updateRoomDto);
+  }
+
+  removeRoom(id: number) {
     return this.roomRepository.removeRoom(id);
   }
 }
